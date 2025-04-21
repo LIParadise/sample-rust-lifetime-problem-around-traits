@@ -23,10 +23,7 @@ where
     readers: Vec<&'reader mut R>,
 }
 
-impl<'book, 'reader, R: Reader<'reader> + 'reader> Library<'reader, R>
-where
-    'book: 'reader,
-{
+impl<'reader, R: Reader<'reader> + 'reader> Library<'reader, R> {
     pub fn new(readers: impl IntoIterator<Item = &'reader mut R>) -> Self {
         Self {
             readers: Vec::from_iter(readers),
